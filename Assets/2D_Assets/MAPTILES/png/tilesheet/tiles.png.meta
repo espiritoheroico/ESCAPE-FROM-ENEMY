@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67f1960c1ea56b3449784828915a512e
+guid: bd189348ab1318a4c893ba8195f2e151
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -68,6 +68,15 @@ TextureImporter:
   - first:
       213: 2870286397712609369
     second: tiles_21
+  - first:
+      213: -6925154376186504650
+    second: tiles_22
+  - first:
+      213: 922424046108175333
+    second: tiles_23
+  - first:
+      213: -4016574229998233168
+    second: tiles_24
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -108,7 +117,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -181,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 517
+        y: 516
         width: 129
         height: 129
       alignment: 0
@@ -202,9 +211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 517
-        width: 129
-        height: 129
+        y: 516
+        width: 130
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,10 +231,10 @@ TextureImporter:
       name: tiles_2
       rect:
         serializedVersion: 2
-        x: 258
-        y: 517
-        width: 129
-        height: 129
+        x: 259
+        y: 516
+        width: 128
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,9 +253,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 387
-        y: 517
+        y: 516
         width: 129
-        height: 129
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,9 +274,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 516
-        y: 517
+        y: 516
         width: 129
-        height: 129
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,7 +295,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 388
+        y: 387
         width: 129
         height: 129
       alignment: 0
@@ -307,7 +316,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 388
+        y: 387
         width: 129
         height: 129
       alignment: 0
@@ -328,7 +337,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 258
-        y: 388
+        y: 387
         width: 129
         height: 129
       alignment: 0
@@ -349,7 +358,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 387
-        y: 388
+        y: 387
         width: 129
         height: 129
       alignment: 0
@@ -370,7 +379,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 516
-        y: 388
+        y: 387
         width: 129
         height: 129
       alignment: 0
@@ -391,7 +400,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 645
-        y: 388
+        y: 387
         width: 129
         height: 129
       alignment: 0
@@ -412,7 +421,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 259
+        y: 258
         width: 129
         height: 129
       alignment: 0
@@ -433,7 +442,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 259
+        y: 258
         width: 129
         height: 129
       alignment: 0
@@ -454,7 +463,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 258
-        y: 259
+        y: 258
         width: 129
         height: 129
       alignment: 0
@@ -474,9 +483,9 @@ TextureImporter:
       name: tiles_14
       rect:
         serializedVersion: 2
-        x: 387
-        y: 259
-        width: 129
+        x: 388
+        y: 258
+        width: 128
         height: 129
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -496,7 +505,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 516
-        y: 259
+        y: 258
         width: 129
         height: 129
       alignment: 0
@@ -517,7 +526,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 130
+        y: 129
         width: 129
         height: 129
       alignment: 0
@@ -538,7 +547,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 130
+        y: 129
         width: 129
         height: 129
       alignment: 0
@@ -559,7 +568,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 258
-        y: 130
+        y: 129
         width: 129
         height: 129
       alignment: 0
@@ -579,8 +588,8 @@ TextureImporter:
       name: tiles_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
+        x: 387
+        y: 129
         width: 129
         height: 129
       alignment: 0
@@ -600,8 +609,8 @@ TextureImporter:
       name: tiles_20
       rect:
         serializedVersion: 2
-        x: 129
-        y: 1
+        x: 0
+        y: 0
         width: 129
         height: 129
       alignment: 0
@@ -621,8 +630,8 @@ TextureImporter:
       name: tiles_21
       rect:
         serializedVersion: 2
-        x: 258
-        y: 1
+        x: 129
+        y: 0
         width: 129
         height: 129
       alignment: 0
@@ -634,6 +643,27 @@ TextureImporter:
       bones: []
       spriteID: 950bb43754e45d720800000000000000
       internalID: 2870286397712609369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tiles_22
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 129
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a59a039c8e4ef90800000000000000
+      internalID: -6925154376186504650
       vertices: []
       indices: 
       edges: []
