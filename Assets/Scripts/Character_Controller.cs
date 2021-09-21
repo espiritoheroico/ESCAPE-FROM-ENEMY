@@ -7,30 +7,39 @@ public class Character_Controller : MonoBehaviour
 
     #region Variables
 
-    //Stats variables
-
+    //mechanic variables
+    [Header("COMPONENTS")]
+    [SerializeField] Animator anim;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SpriteRenderer sprtr;
 
-    [SerializeField] float speed = 0;
-    [SerializeField] bool jump = false;
+    [Header("JUMP VERIFY")]
     [SerializeField] bool isonground = false;
     [SerializeField] float jumpforce = 0;
 
-    [SerializeField] Animator anim;
-
+    [Header("MOVEMENT THE PLAYER")]
     [SerializeField] float move_input_x;
-    [SerializeField] float move_input_y;
-    [SerializeField] float run =1;
+    //[SerializeField] float move_input_y; //for testing
+    [SerializeField] float speed = 0;
+    float startspeed;
+    [SerializeField] float Maxspeed = 0;
+    [SerializeField] float AnimationRun =1; //RUN INCREASE THE SPEED, THERE´S WALKING AND RUNNING, IT´S A BIT DIFERENT// speed will multiply and animation clip too
 
-    Vector2 jumpvector = new Vector2();
+    [Header("RAYCAST TO FIND GROUND ")]
+    [SerializeField] RaycastHit2D hit;
+    [SerializeField] float dis;
+    [SerializeField] bool raybool;
 
-    RaycastHit2D hit;
-    Ray ray;
-    public Transform target;
-    public float radius;
-    public LayerMask layer;
+    [Header("COLLISION WITH OVERLAP CIRCLE")]//I USE OVERLAP + RAYCAST TO GET A PRECISE JUMP RESET MECHANIC
+    [SerializeField] Transform target;
+    [SerializeField] float radius;
 
+    [Header("COLLISION LAYER MASK")]
+    [SerializeField] LayerMask layer;
+
+
+    public float delay = 0.5f;
+    public float delta;
     #endregion
 
     #region Functions
@@ -38,46 +47,71 @@ public class Character_Controller : MonoBehaviour
 
     void Start()
     {
+        startspeed = speed;
     }
 
     void FixedUpdate()
     {
         //detect if the player is on ground
         isonground = Physics2D.OverlapCircle(target.position, radius, layer);
+
         //get inputs
         move_input_x = Input.GetAxis("Horizontal");
-        move_input_y = Input.GetAxis("Vertical");
-        //get button inputs
-
 
         //pass inputs through functions
-        HorizontalMovement(move_input_x * run,speed *run);
-        Jumping(jumpforce);
+        HorizontalMovement(move_input_x * AnimationRun, speed);
+        Jumping(Input.GetKeyDown(KeyCode.Space));
+        JumpVelocity(Time.deltaTime);
 
+        //raycast
+        hit = Physics2D.Raycast(target.transform.position, -Vector2.up,dis,layer);
+        Debug.DrawRay(target.transform.position, -Vector2.up * dis);
+        
+        raybool = hit.collider ? true : false;
+        if (!raybool) anim.SetTrigger("Falling");//IF IS IN THE AIR, FALL ANIMATION IS CALLED
+    }
+
+    void JumpVelocity(float dt)
+    {
+        if (isonground)
+        {
+            speed =startspeed;
+        }
+        else speed -= dt * 5;
     }
     void HorizontalMovement(float x,float speed)
     {
         if (x > 0) sprtr.flipX = false;
         else if (x < 0) sprtr.flipX = true;
 
-        anim.SetFloat("Running", Mathf.Abs(x));
+        if (isonground) { anim.SetBool("idle", true); anim.SetFloat("Running", Mathf.Abs(x)); }
+        else {anim.SetBool("idle", false); }
 
         rb.velocity = new Vector2(x * speed , rb.velocity.y);
     }
-
-    void Jumping(float jf)
+    public void Jumping(bool key)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isonground == true)
+        if (key && isonground == true && raybool)
         {
-            rb.velocity = Vector2.up * jf;
             anim.SetTrigger("Jumping");
+            rb.velocity = new Vector2(move_input_x * jumpforce / 2, 1 * jumpforce);
         }
     }
-
-    void ActorDie()
+    public void Running(bool key)
+    {
+        AnimationRun = 2;
+        speed = Maxspeed;
+    }
+    public void ActorDie()
     {
         anim.SetTrigger("Death");
-    }
 
+    }
+    void OnDrawGizmos()
+    {
+        //DRAW OVERLAP CIRCLE
+        Gizmos.DrawSphere(target.transform.position, radius);
+        Gizmos.color = Color.red;
+    }
     #endregion
 }
