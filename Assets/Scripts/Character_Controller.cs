@@ -44,8 +44,7 @@ public class Character_Controller : MonoBehaviour
 
     #region Functions
 
-
-    void Start()
+    private void OnEnable()
     {
         startspeed = speed;
     }
@@ -71,7 +70,7 @@ public class Character_Controller : MonoBehaviour
         if (!raybool) anim.SetTrigger("Falling");//IF IS IN THE AIR, FALL ANIMATION IS CALLED
     }
 
-    void JumpVelocity(float dt)
+    void JumpVelocity(float dt) //ITS BREAK THE JUMP VELOCITY TO DON´T GLUE ON THE WALL
     {
         if (isonground)
         {

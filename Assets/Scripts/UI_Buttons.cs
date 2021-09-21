@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class UI_Buttons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Playgame()
     {
-        
+
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+    public void FreeRoad()
+    {
+
+    }
+    public void Adventure()
+    {
+
+    }
+    public void BacktoMenu()
+    {
+
+    }
+    public void CloseAd()
+    {
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
