@@ -764,7 +764,8 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -777,10 +778,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: cedd9e93-acb0-4ddf-a27b-c1b314644cab
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: "DINO2D MOBILE - JO\xC3O VITOR DIAS"
+  organizationId: vitor-dias-as-publisher
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

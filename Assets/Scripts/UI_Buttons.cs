@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class UI_Buttons : MonoBehaviour
 {
-    public void Playgame()
-    {
-
-    }
     public void ExitGame()
     {
         Application.Quit();

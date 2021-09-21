@@ -19,6 +19,7 @@ public class Character_Controller : MonoBehaviour
 
     [Header("MOVEMENT THE PLAYER")]
     [SerializeField] float move_input_x;
+    [SerializeField] float move_pointer_x;
     //[SerializeField] float move_input_y; //for testing
     [SerializeField] float speed = 0;
     float startspeed;
@@ -55,7 +56,7 @@ public class Character_Controller : MonoBehaviour
         isonground = Physics2D.OverlapCircle(target.position, radius, layer);
 
         //get inputs
-        move_input_x = Input.GetAxis("Horizontal");
+        move_input_x = Input.GetAxis("Horizontal") + move_pointer_x;
 
         //pass inputs through functions
         HorizontalMovement(move_input_x * AnimationRun, speed);
@@ -74,10 +75,11 @@ public class Character_Controller : MonoBehaviour
     {
         if (isonground)
         {
-            speed =startspeed;
+            speed = startspeed;
         }
-        else speed -= dt * 5;
+        else speed -= dt * 2;
     }
+
     void HorizontalMovement(float x,float speed)
     {
         if (x > 0) sprtr.flipX = false;
@@ -98,8 +100,15 @@ public class Character_Controller : MonoBehaviour
     }
     public void Running(bool key)
     {
-        AnimationRun = 2;
-        speed = Maxspeed;
+        if (key)
+        {
+            AnimationRun = 2;
+            speed = Maxspeed;
+        }
+        else {
+            AnimationRun = 1;
+            speed = startspeed;
+        }
     }
     public void ActorDie()
     {
@@ -112,5 +121,10 @@ public class Character_Controller : MonoBehaviour
         Gizmos.DrawSphere(target.transform.position, radius);
         Gizmos.color = Color.red;
     }
+    public void PointerDir(float s)
+    {
+        move_pointer_x = s;
+    }
+
     #endregion
 }

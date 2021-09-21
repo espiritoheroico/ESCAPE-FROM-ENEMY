@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     #region Variables
-    public enum Gamemode
+    public enum GameStates
     {
-        FreeRoad,
-        Adventure
+        playing,
+        menu,
+        paused
     }
 
-    public Gamemode gmode;
+    public static GameStates gt;
+
+   
     #endregion
 
     #region Functions
@@ -26,14 +28,17 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch (gmode)
+        switch (gt)
         {
-            case Gamemode.FreeRoad:
+            case GameStates.playing:
                 break;
-            case Gamemode.Adventure:
+            case GameStates.menu:
+                break;
+            case GameStates.paused:
                 break;
             default:
                 break;
         }
     }
+
 }

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class CharacterProperties : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private float life;
+    private int points;
+    private float timeplayed;
+    private float pointsrecord;
+    private float timesdefeat;
+    private void OnEnable()
+    {
+       
+    }
+    void setLife()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
