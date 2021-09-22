@@ -119,9 +119,17 @@ public class Character_Controller : MonoBehaviour
     }
     public void ActorDie(bool bl)
     {
+        if (bl)
+        {
+            anim.SetBool("Death", true);
+            anim.SetBool("idle", false);
+        }
+        else
+        {
+            anim.SetBool("Death", false);
+            anim.SetBool("idle", true);
+        }
         dead = bl;
-        anim.SetBool("Death",dead);
-        anim.SetBool("idle", false);
     }
     void OnDrawGizmos()
     {

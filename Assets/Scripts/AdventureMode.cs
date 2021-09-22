@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AdventureMode : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AdventureMode : MonoBehaviour
     //
     [SerializeField] private int itenscolected;
     [SerializeField] private int itensinstage;
+    [SerializeField] private int timesdefeated;
     [SerializeField] List<GameObject> disableditens = new List<GameObject>();
     //
     [SerializeField] private int points;
@@ -20,23 +22,31 @@ public class AdventureMode : MonoBehaviour
     [SerializeField] bool MainObjective = false;
     #endregion
 
+    #region TextPanels
+
+    #endregion
+
     void OnEnable()
     {
         timecounter = 0;
+        itenscolected = 0;
+        timesdefeated = 0;
         MainObjective = false;
         CharactertoStartPoint();
         for (int i = 0; i < disableditens.Count; i++)
         {
             disableditens[i].SetActive(true);
         }
+        
         Collect.aPoint += CollectCount;
+        OnCollisionWith.OnDefeated += OnPlayerDefeated;
+
     }
 
     void Update()
     {
         if (GameManager.gt == GameManager.GameStates.playing && MainObjective == false)
         {
-            
             Timer(Time.deltaTime);
         }
     }
@@ -57,31 +67,41 @@ public class AdventureMode : MonoBehaviour
             //Reached final map point
             ObjectiveCounter();
     }
-
+    //COUNT GAME TIME
     void Timer(float delta)
     {
         timecounter += delta;
     }
-
+    // COUNT COLLECTED ITENS
     public void CollectCount(string tag)
     {
         if (tag == "collectable")
         {
             itenscolected++;
         }
-        if (tag == "coin")
+        else if (tag == "coin")
         {
             points++;
         }
-        
+
         if (itenscolected == itensinstage)
         {
             objectives.Add(true);
         }
     }
 
+    //QUANDO O PLAYER MORRER
+    public void OnPlayerDefeated()
+    {
+        character.GetComponent<Character_Controller>().ActorDie(true);
+        Invoke("CharactertoStartPoint",0.3f);//I HATE USE INVOKE.. BUT
+    }
+
+    //RESETAR O PLAYER
     public void CharactertoStartPoint()
     {
         character.transform.position = startpoint.transform.position;
+        timesdefeated++;
+        character.GetComponent<Character_Controller>().ActorDie(false);
     }
 }

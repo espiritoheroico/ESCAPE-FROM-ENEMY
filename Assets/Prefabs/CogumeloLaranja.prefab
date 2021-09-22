@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 4526691260433294223}
   - component: {fileID: 4526691260433294222}
   - component: {fileID: 4526691260433294209}
+  - component: {fileID: 1430996381}
   m_Layer: 9
   m_Name: CogumeloLaranja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4526691260433294223
 Transform:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -3
   m_Sprite: {fileID: -5396938261465799762, guid: ab1bc168405642648ba6829edeb0d6c3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,3 +110,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7751938, y: 0.8604651}
   m_EdgeRadius: 0
+--- !u!114 &1430996381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526691260433294208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7136748ccd23bb24db85bf5e19e4d843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getId: 0
+  itemTag: collectable
