@@ -52,23 +52,26 @@ public class Character_Controller : MonoBehaviour
 
     void FixedUpdate()
     {
-        //detect if the player is on ground
-        isonground = Physics2D.OverlapCircle(target.position, radius, layer);
+        if (GameManager.gt == GameManager.GameStates.playing)
+        {
+            //detect if the player is on ground
+            isonground = Physics2D.OverlapCircle(target.position, radius, layer);
 
-        //get inputs
-        move_input_x = Input.GetAxis("Horizontal") + move_pointer_x;
+            //get inputs
+            move_input_x = Input.GetAxis("Horizontal") + move_pointer_x;
 
-        //pass inputs through functions
-        HorizontalMovement(move_input_x * AnimationRun, speed);
-        Jumping(Input.GetKeyDown(KeyCode.Space));
-        JumpVelocity(Time.deltaTime);
+            //pass inputs through functions
+            HorizontalMovement(move_input_x * AnimationRun, speed);
+            Jumping(Input.GetKeyDown(KeyCode.Space));
+            JumpVelocity(Time.deltaTime);
 
-        //raycast
-        hit = Physics2D.Raycast(target.transform.position, -Vector2.up,dis,layer);
-        Debug.DrawRay(target.transform.position, -Vector2.up * dis);
-        
-        raybool = hit.collider ? true : false;
-        if (!raybool) anim.SetTrigger("Falling");//IF IS IN THE AIR, FALL ANIMATION IS CALLED
+            //raycast
+            hit = Physics2D.Raycast(target.transform.position, -Vector2.up, dis, layer);
+            Debug.DrawRay(target.transform.position, -Vector2.up * dis);
+
+            raybool = hit.collider ? true : false;
+            if (!raybool) anim.SetTrigger("Falling");//IF IS IN THE AIR, FALL ANIMATION IS CALLED
+        }
     }
 
     void JumpVelocity(float dt) //ITS BREAK THE JUMP VELOCITY TO DON´T GLUE ON THE WALL

@@ -32,32 +32,34 @@ public class FollowTarget : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.gt == GameManager.GameStates.playing)
+        {
+            switch (t)
+            {
+                case postarget.maintarget:
+                    currentTarget = MainTarget;
+                    break;
+                case postarget.target:
+                    currentTarget = target;
+                    break;
+                default:
+                    break;
+            }
+            //bouding position
+            bpos = transform.position;
 
-        switch (t)
-        {
-            case postarget.maintarget:
-                currentTarget = MainTarget;
-                break;
-            case postarget.target:
-                currentTarget = target;
-                break;
-            default:
-                break;
-        }
-        //bouding position
-        bpos = transform.position;
-
-        if (useBounding)
-        {
-            bpos.Set(Mathf.Clamp(transform.position.x,xMIN.position.x,xMAX.position.x),
-                    Mathf.Clamp(transform.position.y,yMIN.transform.position.y, yMAX.transform.position.y),
-                    transform.position.z);
-            transform.position = bpos;
-            Follow();
-        }
-        else
-        {
-        Follow(); 
+            if (useBounding)
+            {
+                bpos.Set(Mathf.Clamp(transform.position.x, xMIN.position.x, xMAX.position.x),
+                        Mathf.Clamp(transform.position.y, yMIN.transform.position.y, yMAX.transform.position.y),
+                        transform.position.z);
+                transform.position = bpos;
+                Follow();
+            }
+            else
+            {
+                Follow();
+            }
         }
     }
     void Follow()

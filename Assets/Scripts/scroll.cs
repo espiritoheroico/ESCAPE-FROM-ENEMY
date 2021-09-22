@@ -18,7 +18,6 @@ public class scroll : MonoBehaviour
     [Range(0, 10)] [SerializeField] float speed_scroll_y = 5;
     #endregion
 
-
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -26,12 +25,15 @@ public class scroll : MonoBehaviour
 
     void FixedUpdate()
     {
-        //increase value scrooltime by time to animate offset
-        SetTextureScale(TexturescaleX,
+        if (GameManager.gt == GameManager.GameStates.playing)
+        {
+            //increase value scrooltime by time to animate offset
+            SetTextureScale(TexturescaleX,
                         TexturescaleY);
 
-        SetTextureOffset(speed_scroll_x,
-                         speed_scroll_y);
+            SetTextureOffset(speed_scroll_x,
+                             speed_scroll_y);
+        }
     }
     void SetTextureScale(float x =0,float y=0) 
     {

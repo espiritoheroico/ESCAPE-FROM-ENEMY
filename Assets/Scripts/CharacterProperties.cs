@@ -9,6 +9,8 @@ public class CharacterProperties : MonoBehaviour
     private float timeplayed;
     private float pointsrecord;
     private float timesdefeat;
+
+
     private void OnEnable()
     {
        
