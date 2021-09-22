@@ -23,7 +23,11 @@ public class AdventureMode : MonoBehaviour
     #endregion
 
     #region TextPanels
-
+    [SerializeField] TextMeshProUGUI tpoints;
+    [SerializeField] TextMeshProUGUI tpointsHUD;
+    [SerializeField] TextMeshProUGUI ttime;
+    [SerializeField] TextMeshProUGUI tobjes;
+    [SerializeField] TextMeshProUGUI deaths;
     #endregion
 
     void OnEnable()
@@ -40,7 +44,7 @@ public class AdventureMode : MonoBehaviour
         
         Collect.aPoint += CollectCount;
         OnCollisionWith.OnDefeated += OnPlayerDefeated;
-
+        OnCollisionWith.EndGame += EndPoint;
     }
 
     void Update()
@@ -48,6 +52,12 @@ public class AdventureMode : MonoBehaviour
         if (GameManager.gt == GameManager.GameStates.playing && MainObjective == false)
         {
             Timer(Time.deltaTime);
+
+            tpoints.text = "Pontos : " + points.ToString();
+            ttime.text = "Tempo : " + timecounter.ToString();
+            tobjes.text = "objetivos : " + objectives.Count;
+            tpointsHUD.text = points.ToString();
+            deaths.text = "mortes : " + timesdefeated;
         }
     }
     void ObjectiveCounter()
@@ -61,9 +71,10 @@ public class AdventureMode : MonoBehaviour
         }
     }
 
-    void EndPoint(Transform a, Transform b)
+    public void EndPoint()
     {
             MainObjective = true;
+            objectives.Add(true);
             //Reached final map point
             ObjectiveCounter();
     }
@@ -93,15 +104,16 @@ public class AdventureMode : MonoBehaviour
     //QUANDO O PLAYER MORRER
     public void OnPlayerDefeated()
     {
+        timesdefeated++;
         character.GetComponent<Character_Controller>().ActorDie(true);
-        Invoke("CharactertoStartPoint",0.3f);//I HATE USE INVOKE.. BUT
-    }
-
+        //character.GetComponent<CapsuleCollider2D>().enabled = false;
+        Invoke("CharactertoStartPoint",0f);//I HATE USE INVOKE.. BUT// IF YOU PUT A VALUE ABOVE 0, THE DEATH ANIMATION WILL PLAY
+     }
     //RESETAR O PLAYER
     public void CharactertoStartPoint()
     {
+        //character.GetComponent<CapsuleCollider2D>().enabled = true;
         character.transform.position = startpoint.transform.position;
-        timesdefeated++;
         character.GetComponent<Character_Controller>().ActorDie(false);
     }
 }

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         freeroad
     }
     public static GameModes gms;
+    //GameOverCanvas
+    [SerializeField] GameObject GameOverCanvas;
     #endregion
 
     #region Functions
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour
     {
         gt = GameStates.paused;
         Application.targetFrameRate = 60;//Android target FPS
+        GameOverCanvas.SetActive(false);
+        OnCollisionWith.EndGame += GameOver;
     }
     void FixedUpdate()
     {
@@ -55,6 +59,12 @@ public class GameManager : MonoBehaviour
     public void Playing()
     {
         gt = GameStates.playing;
+    }
+
+    public void GameOver()
+    {
+        gt = GameStates.paused;
+        GameOverCanvas.SetActive(true);
     }
 
     public void Paused()

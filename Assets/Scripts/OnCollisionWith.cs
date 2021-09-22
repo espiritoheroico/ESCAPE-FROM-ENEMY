@@ -7,6 +7,8 @@ public class OnCollisionWith : MonoBehaviour
     #region Variables
     [SerializeField] LayerMask collisionLayer;
     [SerializeField] LayerMask defeatLayer;
+    [SerializeField] LayerMask endp;
+    //
     [SerializeField] Vector3 positionOffset;
     [SerializeField] Vector2 size;
     [SerializeField] CharacterController cc;
@@ -16,6 +18,9 @@ public class OnCollisionWith : MonoBehaviour
     //
     public delegate void PlayerDefeat();
     public static event PlayerDefeat OnDefeated;
+    //
+    public delegate void EndPoint();
+    public static event EndPoint EndGame;
 
     Collider2D col;
     [SerializeField]int collidedobjID;
@@ -39,6 +44,15 @@ public class OnCollisionWith : MonoBehaviour
         if (col)
         {
             OnDefeated();
+        }
+        col = Physics2D.OverlapBox(transform.position + positionOffset, size, 0, endp);
+        if (col)
+        {
+            //
+            if (EndGame != null)
+            {
+                EndGame();
+            }
         }
     }
 
