@@ -5,46 +5,33 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     #region Variables
-
+    //CONTROLERS
     [SerializeField] GameObject character;
-    CharacterProperties MainProperties;
     public enum GameStates
     {
         playing,
-        menu,
         paused
     }
-
     [SerializeField]public static GameStates gt;
-
     public enum GameModes
     {
         adventure,
         freeroad
     }
-
     public static GameModes gms;
     #endregion
 
     #region Functions
-
-    #endregion
-
     void Start()
     {
+        gt = GameStates.paused;
         Application.targetFrameRate = 60;//Android target FPS
-        MainProperties = character.GetComponent<CharacterProperties>();
     }
-
     void FixedUpdate()
     {
-        if (GameManager.gt == GameManager.GameStates.playing)
-        {
             switch (gt)
             {
                 case GameStates.playing:
-                    break;
-                case GameStates.menu:
                     break;
                 case GameStates.paused:
                     break;
@@ -54,18 +41,32 @@ public class GameManager : MonoBehaviour
             switch (gms)
             {
                 case GameModes.adventure:
+                //NOT FINISHED
                     break;
                 case GameModes.freeroad:
+                //NOT FINISHED
                     break;
                 default:
                     break;
             }
-        }
     }
 
-    void RunTime()
+    #region BUTTONSVOIDS
+    public void Playing()
     {
-
+        gt = GameStates.playing;
     }
 
+    public void Paused()
+    {
+        gt = GameStates.paused;
+    }
+    public void ExitGame()
+    {
+        //call save functions
+        Application.Quit();
+    }
+    #endregion
+
+    #endregion
 }
