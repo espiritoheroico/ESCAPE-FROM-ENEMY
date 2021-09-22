@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class OnCollisionWith : MonoBehaviour
 {
+    #region Variables
     [SerializeField] LayerMask collisionLayer;
     [SerializeField] Vector3 positionOffset;
     [SerializeField] Vector2 size;
+    [SerializeField] CharacterController cc;
     //
-    public delegate void CollisionResult();
-    public static event CollisionResult OnCollision;
+    public delegate void OnCollision(int id,string tag);
+    public static event OnCollision OnCol;
     //
-    RaycastHit2D hit;
-    private void Awake()
+    Collider2D col;
+    [SerializeField]int collidedobjID;
+    [SerializeField] string collisionTag;
+    #endregion
+    private void Start()
     {
-
+        cc = this.gameObject.GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        Physics2D.OverlapBox(transform.position + positionOffset, size, 0,collisionLayer);
-        if (hit)
+        col = Physics2D.OverlapBox(transform.position + positionOffset, size, 0,collisionLayer);
+        if (col)
         {
-            CollisionEvent();
+            //Debug.Log("I FOUNDED");
+            collidedobjID = col.gameObject.GetInstanceID();
+            CollisionEvent(collidedobjID, tag);
+            
         }
     }
 
@@ -31,11 +39,11 @@ public class OnCollisionWith : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + positionOffset, size);
     }
-    void CollisionEvent()
+    public void CollisionEvent(int id,string tag)
     {
-        if (OnCollision != null)
+        if (OnCol != null)
         {
-            OnCollision();
+            OnCol(id, tag);
         }
     }
 

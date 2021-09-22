@@ -8,8 +8,11 @@ public class AdventureMode : MonoBehaviour
     [SerializeField] public Transform startpoint;
     [SerializeField] public Transform endpoint;
     [SerializeField] public GameObject character;
+    //
     [SerializeField] private int itenscolected;
     [SerializeField] private int itensinstage;
+    [SerializeField] List<GameObject> disableditens = new List<GameObject>();
+    //
     [SerializeField] private int points;
     [SerializeField] public float timecounter;
     [SerializeField] List<bool> objectives = new List<bool>();
@@ -22,6 +25,11 @@ public class AdventureMode : MonoBehaviour
         timecounter = 0;
         MainObjective = false;
         CharactertoStartPoint();
+        for (int i = 0; i < disableditens.Count; i++)
+        {
+            disableditens[i].SetActive(true);
+        }
+        Collect.aPoint += CollectCount;
     }
 
     void Update()
@@ -55,9 +63,17 @@ public class AdventureMode : MonoBehaviour
         timecounter += delta;
     }
 
-    public void CollectCount()
+    public void CollectCount(string tag)
     {
-        itenscolected ++;
+        if (tag == "collectable")
+        {
+            itenscolected++;
+        }
+        if (tag == "coin")
+        {
+            points++;
+        }
+        
         if (itenscolected == itensinstage)
         {
             objectives.Add(true);
